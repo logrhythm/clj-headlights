@@ -8,15 +8,16 @@ jdk:
 jobs:
   include:
     - stage: test
-      name: test
+      name: test code
       script: lein test
-    - script: lein eastwood
-      name: lint
-    # - stage: deploy
-    #   name: deploy codox
-    #   script: ./scripts/deploy_codox.sh
-    # - script: ./scripts/deploy_clojars.sh
-    #   name: deloy clojars
+    - name: lint code
+      script: lein eastwood
+    - stage: deploy
+      name: deploy to codox
+      script: ./scripts/deploy_codox.sh
+    - name: deloy to clojars
+      script: ./scripts/deploy_clojars.sh
+      
 cache:
   timeout: 259200 # 3 days
   directories:
