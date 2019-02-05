@@ -11,7 +11,7 @@ It is not intended as a full replacement for the [Beam Java SDK](https://beam.ap
 
 Latest stable version
 ```clojure
-[logrhythm/clj-headlights "0.1.3"]
+[logrhythm/clj-headlights "0.1.4"]
 ```
 
 To get the latest build in from the master branch (may contain breaking changes)
@@ -41,7 +41,7 @@ You can find example projects in the [examples](./examples) directory, and in th
 
 ## Documentation
 
-See official documentation at https://logrhythm.github.io/clj-headlights/
+See official documentation at https://logrhythm-oss.github.io/clj-headlights/
 
 ## Versioning
 
