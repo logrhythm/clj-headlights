@@ -19,7 +19,7 @@ ssh-add travis-github-key
 
 rm -rf target/doc
 mkdir -p target
-git clone git@github.com:logrhythm/clj-headlights.git target/doc
+git clone git@github.com:logrhythm-oss/clj-headlights.git target/doc
 cd target/doc
 git checkout gh-pages
 rm -rf ./*

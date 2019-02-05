@@ -14,13 +14,7 @@ jobs:
       script: lein eastwood
     - stage: deploy
       name: deploy to codox
-      deploy:
-        provider: pages
-        skip-cleanup: true
-        github-token: $github_travis_token  # Set in the settings page of your repository, as a secure variable
-        keep-history: true
-        on:
-          branch: master
+      script: ./scripts/deploy_codox.sh
     - name: deloy to clojars
       script: ./scripts/deploy_clojars.sh
       
