@@ -6,8 +6,10 @@
 
 set -e
 
+pushd $(dirname $0)/..
+
 function print_usage {
-    echo "Usage: ./scripts/release.sh X.Y.Z"
+    echo "Usage: ./release.sh X.Y.Z"
 }
 
 VERSION=$1
@@ -15,11 +17,13 @@ VERSION=$1
 if [ "${VERSION}" = "" ]; then
     echo "Please provide the new version number." >&2
     print_usage >&2
+    popd
     exit 1
 fi
 
 if [[ ! "${VERSION}" =~ ^[0-9]\.[0-9]\.[0-9]$ ]]; then
     echo "Incorrect version number. Must match ^[0-9]\.[0-9]\.[0-9]$" >&2
+    popd
     exit 2
 fi
 
@@ -31,6 +35,7 @@ echo -e "New vesion:      ${VERSION}"
 read -r -p "Procceed? [y/N] " response
 if [ "${response}" != "y" ]; then
     echo "Abort."
+    popd
     exit 3
 fi
 
@@ -56,3 +61,4 @@ git stash pop
 set +x
 
 echo "Version ${VERSION} released!"
+popd
