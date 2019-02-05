@@ -16,6 +16,6 @@
 
 (deftest table-row-maker
   (testing "Creates a TableRow object from a map"
-    (let [table-row (doto (TableRow.) (.set "id" 1) (.set "company" "zendesk"))]
-      (is (= (bigquery-io/table-row-maker {"id" 1 "company" "zendesk"} [{:name "id" :type "INTEGER"} {:name "company" :type "STRING"}]) table-row))
-      (is (= (bigquery-io/table-row-maker {"id" 1 "company" "zendesk"} [{:name "id" :type "INTEGER"} {:name "company" :type "STRING"}]) {"id" 1 "company" "zendesk"})))))
+    (let [table-row (doto (TableRow.) (.set "id" 1) (.set "company" "logrhythm"))]
+      (is (= (bigquery-io/table-row-maker {"id" 1 "company" "logrhythm"} [{:name "id" :type "INTEGER"} {:name "company" :type "STRING"}]) table-row))
+      (is (= (bigquery-io/table-row-maker {"id" 1 "company" "logrhythm"} [{:name "id" :type "INTEGER"} {:name "company" :type "STRING"}]) {"id" 1 "company" "logrhythm"})))))

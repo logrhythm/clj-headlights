@@ -4,7 +4,7 @@ Thank you for your interest in clj-headlights!
 
 ## Reporting a bug or a suggestion
 
-The [GitHub issues section](https://github.com/zendesk/clj-headlights/issues) is the right place to do so. File an issue there an the team will review and discuss the report with you. Try to be as precise and detailed as possible. For both bug reports and suggestions, providing code snippets come a long way. Always include the version you are using. For bugs, reproduction steps are mandatory.
+The [GitHub issues section](https://github.com/logrhythm-oss/clj-headlights/issues) is the right place to do so. File an issue there an the team will review and discuss the report with you. Try to be as precise and detailed as possible. For both bug reports and suggestions, providing code snippets come a long way. Always include the version you are using. For bugs, reproduction steps are mandatory.
 
 ## Getting set up
 
@@ -12,7 +12,7 @@ The [GitHub issues section](https://github.com/zendesk/clj-headlights/issues) is
 2. Fork and clone the repository.
 3. Hack away.
 4. Make sure `lein test` and `lein eastwood` pass.
-5. Submit a [pull-request on GitHub](https://github.com/zendesk/clj-headlights/pulls).
+5. Submit a [pull-request on GitHub](https://github.com/logrhythm-oss/clj-headlights/pulls).
 
 ## Submitting changes
 
@@ -37,7 +37,7 @@ Any new code change need to have associated tests. New functions need to have as
 
 ## Release a new version
 
-This assumes you are a maintainer with push access to the `com.zendesk` group on Clojars.
+This assumes you are a maintainer with push access to the `com.logrhythm` group on Clojars.
 
 ```bash
 ./scripts/release.sh X.Y.Z

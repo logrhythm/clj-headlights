@@ -8,13 +8,15 @@ jdk:
 jobs:
   include:
     - stage: test
-      script: CI_PART=unit ./scripts/run_ci.sh
-    -
-      script: CI_PART=eastwood ./scripts/run_ci.sh
-    - stage: deploy
-      script: ./scripts/deploy_codox.sh
-    -
-      script: ./scripts/deploy_clojars.sh
+      name: test
+      script: lein test
+    - script: lein eastwood
+      name: lint
+    # - stage: deploy
+    #   name: deploy codox
+    #   script: ./scripts/deploy_codox.sh
+    # - script: ./scripts/deploy_clojars.sh
+    #   name: deloy clojars
 cache:
   timeout: 259200 # 3 days
   directories:

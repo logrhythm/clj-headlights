@@ -1,6 +1,6 @@
-(defproject com.zendesk/clj-headlights "master-SNAPSHOT"
+(defproject logrhythm/clj-headlights "master-SNAPSHOT"
   :description "Clojure on Beam"
-  :url "https://github.com/zendesk/clj-headlights"
+  :url "https://github.com/logrhythm-oss/clj-headlights"
   :license {:name "Apache License, Version 2.0"
             :url "https://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [[org.clojure/tools.logging "0.4.0"]
@@ -25,7 +25,7 @@
              :test [:dev {:dependencies [[junit "4.12"]
                                          [org.hamcrest/hamcrest-all "1.3"]]}]
              :uberjar [:release {:aot :all}]}
-  :codox {:source-uri "https://github.com/zendesk/clj-headlights/blob/master/{filepath}#L{line}"
+  :codox {:source-uri "https://github.com/logrhythm-oss/clj-headlights/blob/master/{filepath}#L{line}"
           :metadata {:doc/format :markdown}}
   :plugins [[jonase/eastwood "0.2.5"]
             [lein-codox "0.10.3"]])

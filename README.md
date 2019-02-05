@@ -1,7 +1,7 @@
 # clj-headlights
 
-[![Build Status](https://travis-ci.org/zendesk/clj-headlights.svg?branch=master)](https://travis-ci.org/zendesk/clj-headlights)
-[![Clojars Project](https://img.shields.io/clojars/v/com.zendesk/clj-headlights.svg)](https://clojars.org/com.zendesk/clj-headlights)
+[![Build Status](https://travis-ci.org/logrhythm-oss/clj-headlights.svg?branch=master)](https://travis-ci.org/logrhythm-oss/clj-headlights)
+[![Clojars Project](https://img.shields.io/clojars/v/logrhythm/clj-headlights.svg)](https://clojars.org/logrhythm/clj-headlights)
 
 Clj-headlights is a toolset for [Apache Beam](https://beam.apache.org/) to use Clojure code and construct pipelines.
 
@@ -11,13 +11,13 @@ It is not intended as a full replacement for the [Beam Java SDK](https://beam.ap
 
 Latest stable version
 ```clojure
-[com.zendesk/clj-headlights "0.1.3"]
+[logrhythm/clj-headlights "0.1.3"]
 ```
 
 To get the latest build in from the master branch (may contain breaking changes)
 
 ```clojure
-[com.zendesk/clj-headlights "master-SNAPSHOT"]
+[logrhythm/clj-headlights "master-SNAPSHOT"]
 ```
 
 ### Examples
@@ -41,19 +41,15 @@ You can find example projects in the [examples](./examples) directory, and in th
 
 ## Documentation
 
-See official documentation at https://zendesk.github.io/clj-headlights/
+See official documentation at https://logrhythm.github.io/clj-headlights/
 
 ## Versioning
 
 [Semver](http://semver.org/) is used as versioning scheme.
 
-## Security vulnerabilities
-
-If you would like to report a security vulnerability issue, please follow the [Zendesk vulnerability disclosure process](https://hackerone.com/zendesk).
-
 ## Copyright and license
 
-Copyright 2017 Zendesk, Inc.
+Copyright 2019 LogRhythm, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
