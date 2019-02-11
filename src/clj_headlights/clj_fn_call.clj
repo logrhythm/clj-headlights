@@ -15,12 +15,17 @@
       false)))
 
 (def CljCallArgument
+  "Args must be serializable"
   (s/constrained s/Any serializable?))
 
-(def CljCall (s/cond-pre Var [(s/one Var "processing-var") CljCallArgument]))
+(def CljCall
+  "A Clj Call is either a var or a vec of [Call Args]"
+  (s/cond-pre Var [(s/one Var "processing-var") CljCallArgument]))
 
 ; TODO: document me
-(defn to-serializable-clj-call [clj-call]
+(defn to-serializable-clj-call
+  "Turns a clojure fn call into a map of the call and parameters"
+  [clj-call]
   (if (var? clj-call)
     (to-serializable-clj-call [clj-call])
     (let [[var & params] clj-call
@@ -35,6 +40,7 @@
        :params (vec params)})))
 
 (defn clj-call-invoke
+  "Calls the output wrapper"
   [{:keys [full-name params ns-name creation-stack]} & args]
   (clj_headlights.System/ensureInitialized ns-name)
   (try
