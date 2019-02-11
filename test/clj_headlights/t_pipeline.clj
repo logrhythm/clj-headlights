@@ -50,6 +50,9 @@
       (df-test/pcoll-is [2] pcoll))))
 
 (defn times-ten [x] [x (* 10 x)])
+
+(defn times-n [x n] [x (* n x)])
+
 (deftest df-mapcat
   (testing "it outputs multiple values"
     (let [pcoll (-> (df-test/create-pcoll [1 2])
@@ -60,7 +63,11 @@
   (testing "it outputs one value"
     (let [pcoll (-> (df-test/create-pcoll [1 2])
                     (df/df-map "map" #'times-ten))]
-      (df-test/pcoll-is [[1 10] [2 20]] pcoll))))
+      (df-test/pcoll-is [[1 10] [2 20]] pcoll)))
+  (testing "it outputs times n using args"
+    (let [pcoll (-> (df-test/create-pcoll [1 2])
+                    (df/df-map "map" [#'times-n 2]))]
+      (df-test/pcoll-is [[1 2] [2 4]]  pcoll))))
 
 (defn add-keyword [x kw] [1 [kw x]])
 
