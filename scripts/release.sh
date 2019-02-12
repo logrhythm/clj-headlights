@@ -3,6 +3,8 @@
 # Release a new version of clj-headlights.
 #
 # Usage: ./scripts/release.sh X.Y.Z
+# Put this: {:auth {:repository-auth {#"clojars" {:username "logrhythm" :password "${clojars_password}"}}}} into ~/.lein/profiles.clj
+# It will authenticate you against clojars
 
 set -e
 
