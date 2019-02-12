@@ -32,8 +32,16 @@
   []
   (PipelineOptionsFactory/as PipelineOptions))
 
-(defn side-output-function-wrapper [context val _window state clj-call]
-  (let [outputs (filter some? (pardo/invoke-with-optional-state clj-call val state))]
+(defn replace-keywords
+  "Replaces special keywords with Beam objects, preserves order"
+  [clj-call ^DoFn$ProcessContext ctx window]
+  (let [params (->> clj-call
+                    :params
+                    (replace {:with-context ctx :with-window window}))]
+    (assoc clj-call :params params)))
+
+(defn side-output-function-wrapper [context val window state clj-call]
+  (let [outputs (filter some? (pardo/invoke-with-optional-state (replace-keywords clj-call context window) val state))]
     (doseq [[tuple-tag-key output] outputs]
       (if (= :main tuple-tag-key)
         (pardo/emit-main-output context output)
@@ -60,9 +68,10 @@
     (clj-fn-call/append-argument-to-clj-call wrapping-call (clj-fn-call/to-serializable-clj-call clj-call))
     {}))
 
+
 (defn apply-to-value-and-output
-  [^DoFn$ProcessContext context value _window state clj-call]
-  (let [result (pardo/invoke-with-optional-state clj-call value state)]
+  [^DoFn$ProcessContext context value window state clj-call]
+  (let [result (pardo/invoke-with-optional-state (replace-keywords clj-call context window) value state)]
     (.output context result)))
 
 (s/defn df-map :- PCollection

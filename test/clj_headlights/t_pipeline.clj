@@ -5,6 +5,8 @@
             [schema.test :as schema-test])
   (:import [clj_headlights PipelineOptions]
            [org.apache.beam.runners.dataflow DataflowRunner]
+           [org.apache.beam.sdk.transforms.windowing GlobalWindow]
+           [org.apache.beam.sdk.transforms DoFn$ProcessContext]
            [org.apache.beam.runners.dataflow.options DataflowPipelineWorkerPoolOptions$AutoscalingAlgorithmType]))
 
 (use-fixtures :once schema-test/validate-schemas)
@@ -50,6 +52,14 @@
       (df-test/pcoll-is [2] pcoll))))
 
 (defn times-ten [x] [x (* 10 x)])
+
+(defn times-n [x n] [x (* n x)])
+
+(defn times-n-args [x ^DoFn$ProcessContext ctx n window]
+  (is (instance? GlobalWindow window))
+  (is (instance? DoFn$ProcessContext ctx))
+  [x (* n x)])
+
 (deftest df-mapcat
   (testing "it outputs multiple values"
     (let [pcoll (-> (df-test/create-pcoll [1 2])
@@ -60,7 +70,15 @@
   (testing "it outputs one value"
     (let [pcoll (-> (df-test/create-pcoll [1 2])
                     (df/df-map "map" #'times-ten))]
-      (df-test/pcoll-is [[1 10] [2 20]] pcoll))))
+      (df-test/pcoll-is [[1 10] [2 20]] pcoll)))
+  (testing "it outputs times n using args"
+    (let [pcoll (-> (df-test/create-pcoll [1 2])
+                    (df/df-map "map" [#'times-n 2]))]
+      (df-test/pcoll-is [[1 2] [2 4]]  pcoll)))
+  (testing "it deals with keyword args "
+    (let [pcoll (-> (df-test/create-pcoll [1 2])
+                    (df/df-map "map" [#'times-n-args :with-context 3 :with-window]))]
+      (df-test/pcoll-is [[1 3] [2 6]]  pcoll))))
 
 (defn add-keyword [x kw] [1 [kw x]])
 
@@ -83,7 +101,9 @@
                (= {[:right 1] 1 [:right 2] 1 [:right 3] 1} (frequencies right-vals))))
         grouped))))
 
-(defn process [word]
+(defn process [word window ctx]
+  (is (instance? GlobalWindow window))
+  (is (instance? DoFn$ProcessContext ctx))
   [(when (.startsWith word "MARKER")
      [:marked-words word])
    (if (<= (count word) 3)
@@ -93,7 +113,7 @@
 (deftest df-map-with-side-outputs
   (testing "emits side outputs"
     (let [output (-> (df-test/create-pcoll ["a" "b" "c" "hello" "MARKER world"])
-                     (df/df-map-cat-with-side-outputs "step" #'process [:marked-words :words-lengths-above-cut])
+                     (df/df-map-cat-with-side-outputs "step" [#'process :with-window :with-context]  [:marked-words :words-lengths-above-cut])
                      (df/get-side-outputs))
           output-keys (-> output keys)
           [main marker counts] (df-test/pipeline-to-data (vals output))
