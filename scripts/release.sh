@@ -55,7 +55,8 @@ git commit -m "Version ${VERSION}"
 git tag "v${VERSION}"
 git push --tags
 sed -E -i '' "s/(defproject .+) \"master-SNAPSHOT\"/\1 \"${VERSION}\"/" project.clj
-lein with-profile release deploy clojars
+# the GPG_TTY is required because https://github.com/keybase/keybase-issues/issues/2798
+GPG_TTY=$(tty) lein with-profile release deploy clojars
 git checkout -- project.clj
 git checkout -
 git stash pop
