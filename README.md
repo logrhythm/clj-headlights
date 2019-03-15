@@ -11,7 +11,7 @@ It is not intended as a full replacement for the [Beam Java SDK](https://beam.ap
 
 Latest stable version
 ```clojure
-[logrhythm/clj-headlights "0.3.1"]
+[logrhythm/clj-headlights "0.3.2"]
 ```
 
 To get the latest build in from the master branch (may contain breaking changes)
