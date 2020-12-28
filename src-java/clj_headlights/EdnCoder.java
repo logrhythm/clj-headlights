@@ -45,7 +45,7 @@ public class EdnCoder extends AtomicCoder<Object> {
             ret = clojureRead(edn);
         } catch (Exception e) {
             LOG.error("Exception encountered trying to decode edn:" + edn, e);
-            throw e;
+            throw new IOException(e);
         }
 
         return ret;
