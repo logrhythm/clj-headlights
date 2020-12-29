@@ -1,4 +1,4 @@
-(defproject logrhythm/clj-headlights "2.11-SNAPSHOT"
+(defproject logrhythm/clj-headlights "2.11.0"
   :description "Clojure on Beam"
   :url "https://github.com/logrhythm-oss/clj-headlights"
   :license {:name "Apache License, Version 2.0"
