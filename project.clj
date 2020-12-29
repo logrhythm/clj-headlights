@@ -1,4 +1,4 @@
-(defproject logrhythm/clj-headlights "master-SNAPSHOT"
+(defproject logrhythm/clj-headlights "2.11-SNAPSHOT"
   :description "Clojure on Beam"
   :url "https://github.com/logrhythm-oss/clj-headlights"
   :license {:name "Apache License, Version 2.0"
@@ -9,8 +9,8 @@
                  [cheshire "5.7.0" :exclusions [com.fasterxml.jackson.core/jackson-core]]
                  [prismatic/schema "1.1.7"]
                  [com.taoensso/nippy "2.13.0"]
-                 [org.apache.beam/beam-sdks-java-core "2.10.0"]
-                 [org.apache.beam/beam-runners-google-cloud-dataflow-java "2.10.0" :exclusions [io.netty/netty-codec-http2 io.grpc/grpc-netty-shaded io.grpc/grpc-core]]
+                 [org.apache.beam/beam-sdks-java-core "2.11.0"]
+                 [org.apache.beam/beam-runners-google-cloud-dataflow-java "2.11.0" :exclusions [io.netty/netty-codec-http2 io.grpc/grpc-netty-shaded io.grpc/grpc-core]]
                  [com.google.cloud.bigtable/bigtable-hbase "1.0.0-pre3" :exclusions [io.grpc/grpc-core io.netty/netty-codec-http2 com.google.code.findbugs/jsr305]]
                  [com.google.cloud.bigtable/bigtable-protos "1.0.0-pre3" :exclusions [com.google.code.findbugs/jsr305]]
                  [com.google.cloud.bigtable/bigtable-hbase-1.x-shaded "1.0.0-pre3"]
@@ -21,10 +21,9 @@
   :profiles {:release {:dependencies [[org.clojure/clojure "1.10.0"]]}
              :dev [:release {:dependencies [[org.slf4j/slf4j-simple "1.7.21"]
                                             [org.slf4j/log4j-over-slf4j "1.7.21"]
-                                            [org.apache.beam/beam-runners-direct-java "2.10.0"]]}]
+                                            [org.apache.beam/beam-runners-direct-java "2.11.0"]]}]
              :test [:dev {:dependencies [[junit "4.12"]
                                          [org.hamcrest/hamcrest-all "1.3"]]}]
-             :jar [:release {:aot :all}]
              :uberjar [:release {:aot :all}]}
   :codox {:source-uri "https://github.com/logrhythm-oss/clj-headlights/blob/master/{filepath}#L{line}"
           :metadata {:doc/format :markdown}}

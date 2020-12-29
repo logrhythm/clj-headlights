@@ -45,7 +45,11 @@ See official documentation at https://logrhythm-oss.github.io/clj-headlights/
 
 ## Versioning
 
-[Semver](http://semver.org/) is used as versioning scheme.
+Versioned based on the major and minor versions of the Beam API, plus a patch version for our version.
+
+## Installing local versions
+
+`lein with-profile uberjar install`
 
 ## Copyright and license
 
