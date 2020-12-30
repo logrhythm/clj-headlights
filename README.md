@@ -51,6 +51,18 @@ Versioned based on the major and minor versions of the Beam API, plus a patch ve
 
 `lein with-profile uberjar install`
 
+## Publish workflow
+
+You'll need to generate a deploy key on clojars and save it somewhere safe. We have one in CloudAI gopass currently.
+
+
+After committing and tagging with the version in project.clj being a release version and not a snapshot, run the following:
+
+
+```
+lein with-profile uberjar deploy clojars
+```
+
 ## Copyright and license
 
 Copyright 2019 LogRhythm, Inc.
