@@ -60,6 +60,7 @@ After committing and tagging with the version in project.clj being a release ver
 
 
 ```
+# Be sure JAVA_HOME points to a java 8 installation due to Beam restrictions.
 lein with-profile uberjar deploy clojars
 ```
 
